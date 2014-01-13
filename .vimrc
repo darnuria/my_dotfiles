@@ -6,7 +6,7 @@
 "    By: aviala <aviala@student.42.fr>              +#+  +:+       +#+         "
 "                                                 +#+#+#+#+#+   +#+            "
 "    Created: 2014/01/13 19:16:51 by aviala            #+#    #+#              "
-"    Updated: 2014/01/13 19:16:54 by aviala           ###   ########.fr        "
+"    Updated: 2014/01/13 19:34:08 by aviala           ###   ########.fr        "
 "                                                                              "
 " **************************************************************************** "
 
@@ -20,6 +20,10 @@ set wildmode=list:longest
 " Show current line
 set ruler " Show the cursor position.
 set ai " Always use autoindent.
+
+
+" Copy Paste with graphical environnement.
+set clipboard=unnamed,unnamedplus
 
 syntax enable
 " Coloration syntaxique
