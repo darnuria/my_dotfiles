@@ -1,29 +1,30 @@
 " **************************************************************************** "
 "                                                                              "
 "                                                         :::      ::::::::    "
-"    .myvimrc                                           :+:      :+:    :+:    "
+"    .vimrc                                             :+:      :+:    :+:    "
 "                                                     +:+ +:+         +:+      "
-"    By: zaz <zaz@staff.42.fr>                      +#+  +:+       +#+         "
+"    By: aviala <aviala@student.42.fr>              +#+  +:+       +#+         "
 "                                                 +#+#+#+#+#+   +#+            "
-"    Created: 2013/06/15 12:36:36 by zaz               #+#    #+#              "
-"    Updated: 2014/01/13 18:30:48 by aviala           ###   ########.fr        "
+"    Created: 2014/01/13 19:16:51 by aviala            #+#    #+#              "
+"    Updated: 2014/01/13 19:16:54 by aviala           ###   ########.fr        "
 "                                                                              "
 " **************************************************************************** "
 
 " Put your custom Vim configuration here
+execute pathogen#infect()
 
 " Better command completion
 set wildmenu
 set wildmode=list:longest
+
 " Show current line
 set ruler " Show the cursor position.
-
 set ai " Always use autoindent.
 
 syntax enable
 " Coloration syntaxique
 colorscheme distinguished
-
+set mouse=a
 set nu " Show number of line
 set viminfo='20,\"50 " w and r in .viminfo. But dont save more than 50lines.
 set history=50 " Save 50 file of command line history.
@@ -54,6 +55,15 @@ inoremap <right> <Nop>
 
 " List unprintables characters.
 set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
+
+" Syntastic stuff
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+let g:syntastic_error_symbol = '★'
+let g:syntastic_style_error_symbol = '>'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_warning_symbol = '>'
+let g:syntastic_c_include_dirs = [ '.', '..', '../inc', '../libft/inc', '../libopt/inc']
 
 " if &t_Co > 2 || has("gui_running")
 "  syntax on
