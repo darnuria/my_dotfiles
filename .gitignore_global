@@ -1,1 +1,35 @@
-/nfs/zfs-student/users/2013/aviala/.gitignore_global
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    .gitignore_global                                  :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: zaz <zaz@staff.42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2013/06/20 15:51:46 by zaz               #+#    #+#              #
+     Updated: 2013/11/20 10:48:36 by aviala           ###   ########.fr         
+#                                                                              #
+# **************************************************************************** #
+
+# Compiled source files
+*.a
+*.o
+*.so
+a.out
+*.class
+*.com
+*.pyc
+
+# Editor backups
+\#*#
+#*
+*~
+.*.swp
+
+# OS-generated crap
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
