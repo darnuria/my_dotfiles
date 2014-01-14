@@ -3,21 +3,13 @@
 # Author : Axel Viala
 # Forked from : mandark's bashrc
 # src : mdk.fr
-# Licence : http://www.wtfpl.net/txt/copying/
+# Licence : Unlicence see UNLICENCE.txt
 #
 
-# If not running interactively, don't do anything more
+#if not running interactively, don't do anything more
 [ -z "$PS1" ] && return
+[ "$(cut -d. -f1 /proc/loadavg)" -gt 5 ] && return
 
-USER=`/usr/bin/whoami`
-export USER
-GROUP=`/usr/bin/id -gn $user`
-export GROUP
-MAIL="$USER@student.42.fr"
-export MAIL
-
-shopt -s histappend
-shopt -s cmdhist
 shopt -s checkwinsize
 shopt -s cdspell
 shopt -s dirspell 2>/dev/null # Only in bash 4
@@ -33,19 +25,17 @@ export LESS_TERMCAP_so=$'\E[01;44;33m' # début de la ligne d'état
 export LESS_TERMCAP_se=$'\E[0m'        # fin
 export LESS_TERMCAP_us=$'\E[01;32m'    # début de souligné
 export LESS_TERMCAP_ue=$'\E[0m'        # fin
-export DEBEMAIL DEBFULLNAME
-export EDITOR=vim
+export EDITOR='vim'
 export PYTHONIOENCODING=utf_8
-export CLICOLOR=1
-export LSCOLORS=gxfxcxdxbxegedabagacad
-export HISTCONTROL=ignoreboth
-export HISTIGNORE='cd:pwd:pushd:popd:ls:bg:fg:history'
-export HISTFILESIZE=50000
-export HISTSIZE=50000
+export LS_OPTIONS='--color=auto'
 
-export TERM=xterm-256color
+export HISTCONTROL=ignoredups
+export HISTFILESIZE=5000
+export HISTSIZE=5000
 
 umask 022
+eval "`dircolors`"
+set -C
 
 # I don't like the default blue (That is too dark for me)
 tput initc 12 400 400 1000
@@ -78,17 +68,8 @@ HOSTNAME_COLOR=$'\E'"[$HOSTNAME_BOLD;${HOSTNAME_HUE}m"
 USERNAME_COLOR=$'\E'"[$USERNAME_BOLD;${USERNAME_HUE}m"
 
 WHITE=$'\E[00m'
-BLACK=$'\x1b[30;01m'
-RED=$'\x1b[31;01m'
-GREEN=$'\x1b[32;01m'
-YELLOW=$'\x1b[33;01m'
-BLUE=$'\x1b[34;01m'
-CYAN=$'\x1b[36;01m'
-GRAY=$'\x1b[37;01m'
-NONE=$'\x1b[0m'
 
-if [ $(id -u) -eq 0 ]
-then
+if [ $(id -u) -eq 0 ] ; then
     alias rm='rm -i'
     alias cp='cp -i'
     alias mv='mv -i'
@@ -110,18 +91,21 @@ PS1_trail=""
 export PS1="$TITLE\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]$PS1_trail"'\$ '
 
 alias grep="grep --color"
-alias ll='ls -l'
-alias l='ls -lA'
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'
 alias ...=".. 2"
 alias ....=".. 3"
 alias .....=".. 4"
 alias scr='screen -D -R -U -h 424242'
 alias lintian='lintian --pedantic -v -iI --display-experimental --show-overrides'
 alias fingerprint='find /etc/ssh -name "*.pub" -exec ssh-keygen -l -f {} \;'
-alias sub="/nfs/zfs-student/users/2013/$USER/Desktop/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-# My old emacs alias (Opening file with file:lineno) is replaced by a function
-# in my .emacs.
-alias e='emacs'
+alias wi='wicd-curses'
+alias tmux='tmux -2'
+alias v='vim'
+alias e='emacs -nw'
+alias st='/home/darnuria/mybin/Sublime\ Text\ 2/sublime_text'
+alias makej='make -j3'
 
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
@@ -129,10 +113,6 @@ fi
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
-fi
-
-if [ -f ~/.my_bashrc ]; then
-    . ~/.my_bashrc
 fi
 
 ..()
@@ -147,11 +127,10 @@ fi
 jsonpp()
 {
     input="$([ $# -gt 0 ] && printf "%s\n" "$*" || cat -)"
-    if ! [ z"$(which pygmentize)" = z"" ]
-    then
-		printf "%s" "$input" | python -mjson.tool | pygmentize -l js || printf "%s\n" "$input"
+    if ! [ z"$(which pygmentize)" = z"" ] ; then
+        printf "%s" "$input" | python -mjson.tool | pygmentize -l js || printf "%s\n" "$input"
     else
-		printf "%s" "$input" | python -minput.tool || printf "%s\n" "$input"
+        printf "%s" "$input" | python -minput.tool || printf "%s\n" "$input"
     fi
 }
 
@@ -170,17 +149,11 @@ urlencode()
 # Removes *~ and #*# files in curent folder, for a depth limited to 3 folders.
 clean()
 {
-    find . -name .emacs_backups -prune \
+    find -maxdepth 3 -name .emacs_backups -prune \
         -o \( -type f -a \
-        \( -name '*~' -o -name '#*#' -o -name '\.DS_*' \) \
+        \( -name '*~' -o -name '#*#' -o -name '._*' \) \
         \) \
-        -delete
-}
-
-clean-bin()
-{
-    find ~/workbench -type f -exec file {} \; | grep Mach-O | cut -d ":" -f1 | xargs rm;
-    find ~/workbench -type f \( -name "*.o" -o -name "*.a" \) -delete;
+        -print0 | xargs -0 rm -f
 }
 
 # Try to restore environment variable of an ssh-agent
@@ -194,54 +167,8 @@ ssh-agent-restore()
     done
 }
 
-# Download and apply Julien's bashrc
-upgrade()
-{
-    rm -f ~/.bashrc.1
-    echo "Downloading mandark's bashrc..."
-    wget --timeout=1 --quiet http://mdk.fr/dotfiles/bashrc?42 -O ~/.bashrc.1
-    if grep -q grep ~/.bashrc.1
-    then
-        DIFF="$(diff ~/.bashrc ~/.bashrc.1)"
-        if [ -z "$DIFF" ]
-        then
-            echo "Nothing to upgrade"
-        else
-            echo "Here is the applied patch :"
-            printf "%s\n" "$DIFF"
-            mv -f ~/.bashrc.1 ~/.bashrc
-            echo "type . ~/.bashrc to load your new bashrc file !"
-        fi
-    else
-        rm -f ~/.bashrc.1
-    fi
-}
-
 # Like pydoc, opens a manual page of a PHP function.
 phpdoc()
 {
     lynx "/usr/share/doc/php-doc/html/function.$(printf "%s" "$*" | sed 's/[^a-zA-Z0-9]/-/g').html"
-}
-
-# From : http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
-export MARKPATH="$HOME/.marks"
-function jump
-{
-    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
-}
-
-function mark
-{
-    mkdir -p "$MARKPATH"
-    ln -s "$(pwd)" "$MARKPATH/$1"
-}
-
-function unmark
-{
-    rm -i "$MARKPATH/$1"
-}
-
-function marks
-{
-    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
 }
