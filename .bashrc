@@ -43,6 +43,8 @@ export HISTIGNORE='cd:pwd:pushd:popd:ls:bg:fg:history'
 export HISTFILESIZE=50000
 export HISTSIZE=50000
 
+export TERM=xterm-256color
+
 umask 022
 
 # I don't like the default blue (That is too dark for me)
