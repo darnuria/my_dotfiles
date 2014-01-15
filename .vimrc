@@ -6,7 +6,7 @@
 "    By: aviala <aviala@student.42.fr>              +#+  +:+       +#+         "
 "                                                 +#+#+#+#+#+   +#+            "
 "    Created: 2014/01/13 19:16:51 by aviala            #+#    #+#              "
-"    Updated: 2014/01/14 20:34:04 by aviala           ###   ########.fr        "
+"    Updated: 2014/01/15 19:14:37 by aviala           ###   ########.fr        "
 "                                                                              "
 " **************************************************************************** "
 
@@ -19,9 +19,10 @@ set wildmode=list:longest
 
 " Show current line
 set ruler " Show the cursor position.
+set cursorline
 
 " Always use autoindent.
-set ai
+set autoindent
 
 " Copy Paste with graphical environnement.
 set clipboard=unnamed,unnamedplus
@@ -35,7 +36,8 @@ colorscheme distinguished
 
 " Active mouse support.
 set mouse=a
-set nu " Show number of line
+" Show number of line
+set number
 set viminfo='20,\"50 " w and r in .viminfo. But dont save more than 50lines.
 set history=50 " Save 50 file of command line history.
 set colorcolumn=80 " Set limit at 80 column.
@@ -101,7 +103,7 @@ let g:syntastic_error_symbol = '★'
 let g:syntastic_style_error_symbol = '>'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_warning_symbol = '>'
-let g:syntastic_c_include_dirs = [ '.', '..', 'includes', '../libopt/inc']
+let g:syntastic_c_include_dirs = [ '.', '..', './includes', '../libopt/inc', './libft/includes' ]
 
 " if &t_Co > 2 || has("gui_running")
 "  syntax on
