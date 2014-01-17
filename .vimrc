@@ -107,7 +107,6 @@ set numberwidth=6         " minimal number width (not working?)
 " set guioptions=
 " set guifont=Inconsolata\ 11
 
-colorscheme 
 colorscheme distinguished
 syntax on
 
