@@ -72,6 +72,18 @@ NeoBundle 'scrooloose/nerdtree.git'
 " \    },
 " \ }
 
+
+"|
+"| Gundo
+"|
+
+nnoremap <F5> :GundoToggle<CR>
+NeoBundle 'Gundo'
+
+"|
+"| 
+"|
+
 " Brief help
 " :NeoBundleList          - list configured bundles
 " :NeoBundleInstall(!)    - install(update) bundles
