@@ -6,7 +6,7 @@
 "    By: aviala <aviala@student.42.fr>              +#+  +:+       +#+         "
 "                                                 +#+#+#+#+#+   +#+            "
 "    Created: 2014/01/13 19:16:51 by aviala            #+#    #+#              "
-"    Updated: 2014/01/15 19:14:37 by aviala           ###   ########.fr        "
+"    Updated: 2014/01/19 14:47:47 by aviala           ###   ########.fr        "
 "                                                                              "
 " **************************************************************************** "
 
@@ -103,7 +103,7 @@ let g:syntastic_error_symbol = '★'
 let g:syntastic_style_error_symbol = '>'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_warning_symbol = '>'
-let g:syntastic_c_include_dirs = [ '.', '..', './includes', '../libopt/inc', './libft/includes' ]
+let g:syntastic_c_include_dirs = [ '.', '..', './includes', '../libopt/inc', './libft/includes', 'SDL2/include/SDL2' ]
 
 " if &t_Co > 2 || has("gui_running")
 "  syntax on
