@@ -1,0 +1,79 @@
+# conky configuration
+#
+# The list of variables has been removed from this file in favour
+# of keeping the documentation more maintainable.
+# Check http://conky.sf.net for an up-to-date-list.
+#
+# For ideas about how to modify conky, please see:
+# http://crunchbanglinux.org/forums/topic/59/my-conky-config/
+#
+# For help with conky, please see:
+# http://crunchbanglinux.org/forums/topic/2047/conky-help/
+#
+# Enjoy! :)
+##############################################
+# Settings
+##############################################
+background yes
+use_xft yes
+xftfont Liberation Sans:size=9
+xftalpha 1
+update_interval 2
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+#own_window_argb_visual yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 200 200
+maximum_width 240
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+default_color 656667
+default_shade_color 000000
+default_outline_color 828282
+alignment top_right
+gap_x 12
+gap_y 56
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale yes
+##############################################
+#  Output
+##############################################
+TEXT
+S Y S T E M    I N F O
+${hr}
+Host:$alignr$nodename
+Uptime:$alignr$uptime
+RAM:$alignr$mem/$memmax
+Swap:$alignr$swap/$swapmax
+Disk:$alignr${fs_used /}/${fs_size /}
+CPU:$alignr${cpu cpu0}%
+Wifi:$alignr${wireless_essid wlan0} ${wireless_link_qual_perc wlan0}%
+temp:$alignr$acpitemp°C
+sound:$alignr[$mixer%]
+time:$alignr${time %y/%m/%d %H:%M}
+
+S H O R T C U T    K E Y S
+${hr}
+Alt+F2$alignr Run Dialog
+Alt+F3$alignr Alt Menu
+Super+Space$alignr Main Menu
+Super+Tab$alignr Client Menu
+Super+t$alignr Terminal
+Super+f$alignr File Manager
+Super+e$alignr Editor
+Super+m$alignr Media Player
+Super+w$alignr Web Browser
+Super+h$alignr Task Manager
+Super+l$alignr Lock Screen
+Super+v$alignr Volume Control
+Super+x$alignr Logout
+Super+n$alignr Network Manager
+PrtSc$alignr Screenshot
+Fn+F9$alignr ToggleTouchpad

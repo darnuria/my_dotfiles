@@ -12,16 +12,32 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+	source "$HOME/.bashrc"
     fi
 fi
 
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin
 
+export TERM=xterm-256color
+
+# include sbin in PATH
+# if [ -d "/sbin" ] ; then
+#    PATH="/sbin:$PATH"
+# fi
+# if [ -d "/usr/sbin" ] ; then
+#     PATH="/usr/sbin:$PATH"
+# fi
+
+if [ -d "$HOME/usr/local/bin" ] ; then
+    PATH="$HOME/usr/local/bin:$PATH"
+fi
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-if [ -d "$HOME/usr/local/bin" ] ; then
-	PATH="$HOME/usr/local/bin:$PATH"
+
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
 fi
+
