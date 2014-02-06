@@ -81,8 +81,14 @@ nnoremap <F5> :GundoToggle<CR>
 NeoBundle 'Gundo'
 
 "|
-"| 
+"| Rainbow Parentheses
 "|
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+NeoBundle 'kien/rainbow_parentheses.vim'
 
 " Brief help
 " :NeoBundleList          - list configured bundles
