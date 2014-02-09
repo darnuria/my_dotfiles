@@ -90,6 +90,11 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 NeoBundle 'kien/rainbow_parentheses.vim'
 
+"|
+"| terryma/vim-multiple-cursors
+"|
+
+NeoBundle 'terryma/vim-multiple-cursors'
 " Brief help
 " :NeoBundleList          - list configured bundles
 " :NeoBundleInstall(!)    - install(update) bundles
