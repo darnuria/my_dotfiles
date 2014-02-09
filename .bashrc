@@ -9,12 +9,18 @@
 # If not running interactively, don't do anything more
 [ -z "$PS1" ] && return
 
-USER=`/usr/bin/whoami`
-export USER
-GROUP=`/usr/bin/id -gn $user`
-export GROUP
-MAIL="$USER@student.42.fr"
-export MAIL
+if [ "$OSTYPE" == "linux-gnu" ] ; then 
+	export USER2="aviala"
+	export MAIL="$USER@student.42.fr"
+	export LS_OPTIONS='--color=auto'
+	eval "`dircolors`"
+	set -C
+elif [ "$OSTYPE" == "darwin" ] ; then
+	export USER=`whoami`
+	export MAIL="$USER@student.42.fr"
+	export CLICOLOR=1
+	export LSCOLORS=gxfxcxdxbxegedabagacad
+fi
 
 shopt -s histappend
 shopt -s cmdhist
@@ -33,11 +39,8 @@ export LESS_TERMCAP_so=$'\E[01;44;33m' # début de la ligne d'état
 export LESS_TERMCAP_se=$'\E[0m'        # fin
 export LESS_TERMCAP_us=$'\E[01;32m'    # début de souligné
 export LESS_TERMCAP_ue=$'\E[0m'        # fin
-export DEBEMAIL DEBFULLNAME
 export EDITOR=vim
 export PYTHONIOENCODING=utf_8
-export CLICOLOR=1
-export LSCOLORS=gxfxcxdxbxegedabagacad
 export HISTCONTROL=ignoreboth
 export HISTIGNORE='cd:pwd:pushd:popd:ls:bg:fg:history'
 export HISTFILESIZE=50000
@@ -221,25 +224,3 @@ phpdoc()
     lynx "/usr/share/doc/php-doc/html/function.$(printf "%s" "$*" | sed 's/[^a-zA-Z0-9]/-/g').html"
 }
 
-# From : http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
-export MARKPATH="$HOME/.marks"
-function jump
-{
-    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
-}
-
-function mark
-{
-    mkdir -p "$MARKPATH"
-    ln -s "$(pwd)" "$MARKPATH/$1"
-}
-
-function unmark
-{
-    rm -i "$MARKPATH/$1"
-}
-
-function marks
-{
-    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
-}
