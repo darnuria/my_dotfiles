@@ -100,5 +100,11 @@ NeoBundle 'terryma/vim-multiple-cursors'
 " :NeoBundleInstall(!)    - install(update) bundles
 " :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
+"|
+"| wting/rust.vim
+"|
+
+NeoBundle 'wting/rust.vim'
+
 " Installation Check
 NeoBundleCheck
