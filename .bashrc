@@ -9,19 +9,6 @@
 # If not running interactively, don't do anything more
 [ -z "$PS1" ] && return
 
-if [ "$OSTYPE" == "linux-gnu" ] ; then 
-	export USER2="aviala"
-	export MAIL="$USER@student.42.fr"
-	export LS_OPTIONS='--color=auto'
-	eval "`dircolors`"
-	set -C
-elif [ "$OSTYPE" == "darwin" ] ; then
-	export USER=`whoami`
-	export MAIL="$USER@student.42.fr"
-	export CLICOLOR=1
-	export LSCOLORS=gxfxcxdxbxegedabagacad
-fi
-
 shopt -s histappend
 shopt -s cmdhist
 shopt -s checkwinsize
@@ -46,7 +33,21 @@ export HISTIGNORE='cd:pwd:pushd:popd:ls:bg:fg:history'
 export HISTFILESIZE=50000
 export HISTSIZE=50000
 
-umask 022
+if [ "$OSTYPE" == "linux-gnu" ] ; then
+	echo "Linux detected"
+	export USER2="aviala"
+	export MAIL="$USER@student.42.fr"
+	export LS_OPTIONS='--color=auto'
+	umask 022
+	eval "`dircolors`"
+	set -C
+elif [ "$OSTYPE" == "darwin12" ] ; then
+	echo "OSux Detected beuark."
+	export USER=`whoami`
+	export MAIL="$USER@student.42.fr"
+	export CLICOLOR=1
+	export LSCOLORS=gxfxcxdxbxegedabagacad
+fi
 
 # I don't like the default blue (That is too dark for me)
 tput initc 12 400 400 1000
@@ -111,8 +112,9 @@ PS1_trail=""
 export PS1="$TITLE\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]$PS1_trail"'\$ '
 
 alias grep="grep --color"
-alias ll='ls -l'
-alias l='ls -lA'
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'
 alias ...=".. 2"
 alias ....=".. 3"
 alias .....=".. 4"
