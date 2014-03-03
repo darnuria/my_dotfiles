@@ -164,10 +164,10 @@ set showmatch         " when inserting a bracket, briefly jump to its match
 set showcmd
 
 " set syntax on
-set tabstop=2
+set tabstop=4
 set expandtab
 set shiftwidth=4
-set softtabstop=2
+set softtabstop=4
 set smartindent
 set cindent
 
