@@ -94,8 +94,8 @@ set guipty         " better (?) terminal emulation in GUI mode
 set autoindent " Always use autoindent.
 
 set showmode         " display current mode blow the status line
-set showtabline=2         " show tabbar even for a single buffer
-set laststatus=2         " always show the status line
+set showtabline=4         " show tabbar even for a single buffer
+set laststatus=4         " always show the status line
 set ruler         " display line/col position in the status line
 set cursorline         " highlight current line
 set splitbelow         " consistency with most tiling WMs (wmii, i3…)
