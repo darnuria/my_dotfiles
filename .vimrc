@@ -149,7 +149,8 @@ autocmd FileType html,xhtml,javascript,css,c,cpp,python setlocal
 "|=============================================================================
 
 set encoding=utf-8
-
+" Highligh blank characters.
+set lcs=tab:\›\ ,trail:~,nbsp:¤,extends:>,precedes:<
 " this should be the default but some distros disable modelines by default…
 set modeline
 set modelines=5
@@ -182,7 +183,8 @@ set ignorecase         " search is case-insensitive…
 set smartcase         " … except if the search pattern contains uppercase chars
 
 " case-insensitive tab completion
-set wildmode=longest:list
+set wildmenu
+set wildmode=longest:full
 if exists("&wildignorecase")
 	set wildignorecase
 endif
