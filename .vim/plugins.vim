@@ -51,16 +51,20 @@ NeoBundle 'tomtom/quickfixsigns_vim'
 " autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 function! s:CloseIfOnlyNerdTreeLeft()
-	if exists("t:NERDTreeBufName")
-		if bufwinnr(t:NERDTreeBufName) != -1
-			if winnr("$") == 1
-				q
-			endif
-		endif
-	endif
+    if exists("t:NERDTreeBufName")
+        if bufwinnr(t:NERDTreeBufName) != -1
+            if winnr("$") == 1
+                q
+            endif
+        endif
+    endif
 endfunction
 let NERDTreeIgnore = ['\.o$', '\.a$']
 NeoBundle 'scrooloose/nerdtree.git'
+
+"|
+"| vimproc
+"|
 
 " Recommended to install
 " NeoBundle 'Shougo/vimproc', {
@@ -72,7 +76,6 @@ NeoBundle 'scrooloose/nerdtree.git'
 " \    },
 " \ }
 
-
 "|
 "| Gundo
 "|
@@ -81,7 +84,7 @@ nnoremap <F5> :GundoToggle<CR>
 NeoBundle 'Gundo'
 
 "|
-"| Rainbow Parentheses
+"| Rainbow Parentheses.
 "|
 
 au VimEnter * RainbowParenthesesToggleAll
@@ -105,6 +108,12 @@ NeoBundle 'terryma/vim-multiple-cursors'
 "|
 
 NeoBundle 'wting/rust.vim'
+"|
+"| haskell:
+"| vim2hs: dag/vim2hs
+"|
+
+NeoBundle 'https://github.com/dag/vim2hs'
 
 " Installation Check
 NeoBundleCheck
