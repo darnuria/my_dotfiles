@@ -1,9 +1,9 @@
-"| 
+"|
 "| File		: ~/.vimrc
 "| Source 	: https://github.com/darnuria/my_dotfiles
 "| Licence	: UNLICENCE
 "|
-"
+
 let $VIMHOME = glob('~/.vim')         " user directory
 let $VIMTEMP = glob('~/.vim/tmp')        " temp directory
 
@@ -90,36 +90,50 @@ set guipty         " better (?) terminal emulation in GUI mode
 "|=============================================================================
 "| User Interface <<<
 "|=============================================================================
+"
+" Always use autoindent.
+set autoindent
+" Display current mode blow the status line.
+set showmode
+" Show tabbar even for a single buffer.
+set showtabline=4
+" Always show the status line.
+set laststatus=4
+" Display line/col position in the status line.
+set ruler
+" Highlight current line.
+set cursorline
+" Consistency with most tiling WMs (wmii, i3…).
+set splitbelow
+" Easier rectangular selections.
+set virtualedit=block
+"
+" Show absolute line numbers (:set nu).
+set number
+" show relative line numbers (:set rnu).
+"set relativenumber
 
-set autoindent " Always use autoindent.
+" Number of screen lines to show around the cursor.
+set scrolloff=5
+" Minimal number width (not working?).
+set numberwidth=6
 
-set showmode         " display current mode blow the status line
-set showtabline=4         " show tabbar even for a single buffer
-set laststatus=4         " always show the status line
-set ruler         " display line/col position in the status line
-set cursorline         " highlight current line
-set splitbelow         " consistency with most tiling WMs (wmii, i3…)
-set virtualedit=block         " easier rectangular selections
-
-set number         " show absolute line numbers (:set nu)
-"set relativenumber         " show relative line numbers (:set rnu)
-
-set scrolloff=5         " number of screen lines to show around the cursor
-set numberwidth=6         " minimal number width (not working?)
-
-" minimal interface when running in GUI mode
+" Minimal interface when running in GUI mode.
 " set guioptions=
 " set guifont=Inconsolata\ 11
 
 syntax on
 colorscheme distinguished
 
-" 80-character lines (= Mozilla guidelines)
-set textwidth=80         " line length above which to break a line
-set colorcolumn=+0         " highlight the textwidth limit
-set nowrap
+" 80-character lines (= Mozilla guidelines).
+" Line length above which to break a line.
+set textwidth=80
+" Highlight the textwidth limit.
+set colorcolumn=+0
+set wrap
 "set nowrapscan
 set linebreak
+set showbreak=>\ \ \
 
 autocmd FileType Makefile set noexpandtab
 " set foldmethod=indent"
@@ -135,9 +149,8 @@ set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
 "  set hlsearch
 " endif
 
-" Set foldmethod=indent
+" set foldmethod=indent
 autocmd FileType html,xhtml,javascript,css,c,cpp,python setlocal
-"foldmethod=indent
 "
 "|=============================================================================
 "| >>> User Interface
@@ -155,12 +168,13 @@ set lcs=tab:\›\ ,trail:~,nbsp:¤,extends:>,precedes:<
 set modeline
 set modelines=5
 
-" Use the current file’s directory as Vim’s working directory
+" Use the current file’s directory as Vim’s working directory.
 " set autochdir         " XXX not working on MacOSX
 
-set showmatch         " when inserting a bracket, briefly jump to its match
-" set filetype=vim         " trigger the FileType event when set (local to
-" buffer)
+" When inserting a bracket, briefly jump to its match.
+set showmatch
+" Trigger the FileType event when set (local to buffer)
+" set filetype=vim
 
 set showcmd
 
@@ -174,26 +188,38 @@ set cindent
 
 set viminfo='20,\"50 " w and r in .viminfo. But dont save more than 50lines.
 set history=50 " Save 50 file of command line history.
-" 80-character lines (= Mozilla guidelines)
+" 80-character lines (= Mozilla guidelines).
 
-" search settings
-set hlsearch         " highlight search results
-set incsearch         " incremental search: find as you type
-set ignorecase         " search is case-insensitive…
-set smartcase         " … except if the search pattern contains uppercase chars
+" Search settings.
+set hlsearch         " Highlight search results.
+set incsearch         " Incremental search: find as you type.
+set ignorecase         " Search is case-insensitive.
+set smartcase         " Except if the search pattern contains uppercase chars.
 
-" case-insensitive tab completion
+" Case-insensitive tab completion.
 set wildmenu
 set wildmode=longest:full
+
 if exists("&wildignorecase")
 	set wildignorecase
 endif
+
 set showfulltag
 
-" disable incrementation of octal numbers
+" Disable incrementation of octal numbers.
 set nrformats=hex
 
-" Adapt to the type of the file. -> '\t' instead of ' '.
+" Strip trailing whitespace.
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position..
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean: restore previous search history, and cursor position.
+    let @/=_s
+    call cursor(l, c)
+endfunction
 
-" au BufReadPosa * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
