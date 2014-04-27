@@ -142,7 +142,7 @@ autocmd FileType Makefile set noexpandtab
 " Remplace the text in the register.
 
 " List unprintables characters.
-set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
+set listchars=tab:▸.,eol:¬,trail:·,nbsp:·
 
 " if &t_Co > 2 || has("gui_running")
 "  syntax on
@@ -163,7 +163,7 @@ autocmd FileType html,xhtml,javascript,css,c,cpp,python setlocal
 
 set encoding=utf-8
 " Highligh blank characters.
-set lcs=tab:\›\ ,trail:~,nbsp:¤,extends:>,precedes:<
+"set lcs=tab:\›\ ,trail:~,nbsp:¤,extends:>,precedes:<
 " this should be the default but some distros disable modelines by default…
 set modeline
 set modelines=5
