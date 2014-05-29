@@ -43,6 +43,18 @@ elif [ "$OSTYPE" == "darwin12" ] ; then
     export LSCOLORS=gxfxcxdxbxegedabagacad
 fi
 
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+else
+    echo "Aie!"
+fi
+
+if [ -d "$HOME/.local/lib" ] ; then
+    LD_LIBRARY_PATH="$HOME/.local/lib"
+else
+    echo "Directory not found!"
+fi
+
 # I don't like the default blue (That is too dark for me)
 tput initc 12 400 400 1000
 
@@ -186,3 +198,4 @@ ssh-agent-restore() {
     done
 }
 
+#fish
