@@ -50,7 +50,7 @@ else
 fi
 
 if [ -d "$HOME/.local/lib" ] ; then
-    LD_LIBRARY_PATH="$HOME/.local/lib"
+    export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 else
     echo "Directory not found!"
 fi
