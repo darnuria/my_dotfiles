@@ -113,7 +113,18 @@ NeoBundle 'wting/rust.vim'
 "| vim2hs: dag/vim2hs
 "|
 
-NeoBundle 'https://github.com/dag/vim2hs'
+"NeoBundle 'https://github.com/dag/vim2hs'
 
+"|
+"|
+"|
+NeoBundle 'https://github.com/tpope/vim-fugitive'
+
+"|
+"| AirLine
+"|
+NeoBundle 'https://github.com/bling/vim-airline'
+let g:airline_powerline_fonts = 0
+let g:airline#extensions#tabline#enabled = 1
 " Installation Check
 NeoBundleCheck

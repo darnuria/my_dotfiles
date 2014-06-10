@@ -221,5 +221,8 @@ function! <SID>StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
-
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+
+"| for vim-airline
+set laststatus=2
