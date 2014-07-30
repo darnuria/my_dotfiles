@@ -197,9 +197,8 @@ set ignorecase         " Search is case-insensitive.
 set smartcase         " Except if the search pattern contains uppercase chars.
 
 " Case-insensitive tab completion.
-set wildmenu
-set wildmode=longest:full
-
+set wildmenu " enhanced command-line completion in the status line
+set wildmode=longest:full " (use `list:longest` to complete files like a
 if exists("&wildignorecase")
 	set wildignorecase
 endif
