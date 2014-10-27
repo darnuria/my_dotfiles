@@ -1,8 +1,15 @@
 " Tab specific option
-set tabstop=8                   "A tab is 8 spaces
-set expandtab                   "Always uses spaces instead of tabs
-set softtabstop=4               "Insert 4 spaces when tab is pressed
-set shiftwidth=4                "An indent is 4 spaces
-set smarttab                    "Indent instead of tab at start of line
-set shiftround                  "Round spaces to nearest shiftwidth multiple
-set nojoinspaces                "Don't convert spaces to tabs
+" A tab is 2 spaces.
+set tabstop=2
+" Always uses spaces instead of tabs
+set expandtab
+" Insert 2 spaces when tab is pressed
+set softtabstop=2
+" An indent is 4 spaces
+set shiftwidth=2
+" Indent instead of tab at start of line
+set smarttab
+" Round spaces to nearest shiftwidth multiple
+set shiftround
+" Don't convert spaces to tabs
+set nojoinspaces

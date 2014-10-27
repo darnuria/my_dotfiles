@@ -8,7 +8,7 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
+# If running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
@@ -16,34 +16,47 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-PATH=/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin
+PATH=/bin
 
 export TERM=xterm-256color
 
-# include sbin in PATH
-# if [ -d "/sbin" ] ; then
-#    PATH="/sbin:$PATH"
-# fi
-# if [ -d "/usr/sbin" ] ; then
-#     PATH="/usr/sbin:$PATH"
-# fi
+# Include /usr/bin into PATH.
+if [ -d "/usr/bin" ] ; then
+    PATH="/usr/bin:$PATH"
+fi
 
+# Include /sbin into PATH.
+if [ -d "/sbin" ] ; then
+    PATH="/sbin:$PATH"
+fi
+
+# Include /usr/sbin into PATH.
+if [ -d "/usr/sbin" ] ; then
+    PATH="/usr/sbin:$PATH"
+fi
+
+# Include $HOME/usr/local/bin into PATH
 if [ -d "$HOME/usr/local/bin" ] ; then
     PATH="$HOME/usr/local/bin:$PATH"
 fi
+
+# Include /usr/local/bin into PATH
 if [ -d "/usr/local/bin" ] ; then
     PATH="/usr/local/bin:$PATH"
 fi
 
+# Haskell binaries packages
+# Include $HOME/.cabal/bin into PATH.
 if [ -d "$HOME/.cabal/bin" ] ; then
     PATH="$HOME/.cabal/bin:$PATH"
 fi
 
-# set PATH so it includes user's private bin if it exists
+# Include $HOME/bin into PATH.
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# Include $HOME/.local/bin into PATH.
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
