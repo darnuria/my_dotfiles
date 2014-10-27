@@ -4,15 +4,26 @@
 "| Licence	: UNLICENCE
 "|
 
-let $VIMHOME = glob('~/.vim')         " user directory
-let $VIMTEMP = glob('~/.vim/tmp')        " temp directory
+"|=============================================================================
+"| Indispensible Settings
+"|=============================================================================
+"
+" User configuration directory.
+let $VIMHOME = glob('~/.vim')
+" Temporary files directory.
+let $VIMTEMP = glob('~/.vim/tmp')
 
 " Don’t create temp files everywhere, but just in $VIMTEMP if it exists
-if !empty($VIMTEMP)         " check that the directory exists
-	set backupdir=$VIMTEMP         " backup files
-	set directory=$VIMTEMP         " swap files
-	set undodir =$VIMTEMP         " undo files
-	set undofile         " persistent undo
+" Check that the directory exists.
+if !empty($VIMTEMP)
+    " backup files
+    set backupdir=$VIMTEMP
+    " swap files
+    set directory=$VIMTEMP
+    " undo files
+    set undodir =$VIMTEMP
+    " persistent undo
+    set undofile
 endif
 
 " Modern behaviour:
@@ -24,73 +35,67 @@ set nocompatible
 " Copy Paste with graphical environnement.
 set clipboard=unnamed,unnamedplus
 
-" two solutions to let CTRL-ZXCV behave like in Notepad:
-" * the standard "mswin.vim" resource: source $VIMRUNTIME/mswin.vim
+" Two solutions to let CTRL-ZXCV behave like in Notepad:
 " * the "cua-mode.vim" plugin: https://github.com/fabi1cazenave/cua-mode.vim
-" (the CUA mode, by default, preserves other Vim shortcuts much better)
 
-" Eeverytime we change window, check if file has been updated outside of the
-" editor.
+" Everytime we change window, check if file has been updated outside of the editor.
 autocmd WinEnter * checktime
 
 "|=============================================================================
 "| Plugins
 "|=============================================================================
 
-filetype off " required!
+" Required for plugins
+filetype off
 
 if filereadable($VIMHOME.'/plugins.vim')
-	source $VIMHOME/plugins.vim
+    source $VIMHOME/plugins.vim
 endif
 
+" Required for plugins
 filetype plugin indent on
-
-"if exists("Ranger")
-"	noremap <silent> <Esc>e :call Ranger()<CR>
-"endif
-
-"|
-"| end : Plugins
-"|
 
 "|=============================================================================
 "| Mappings
 "|=============================================================================
 
-" Disable digraph input to make <^> work faster.
+" Note: Disable digraph input to make <^> work faster.
 set nodigraph
 
-" Unset arrow of death.
+" Note: Unset arrow for moves in Visual-* mode.
 vnoremap <Up> <Nop>
 vnoremap <Down> <Nop>
 vnoremap <Left> <Nop>
 vnoremap <Right> <Nop>
+
+" Note: Unset arrow for moves in Insertion mode.
 inoremap <Up> <Nop>
 inoremap <Down> <Nop>
 inoremap <Left> <Nop>
 inoremap <right> <Nop>
 
 "|=============================================================================
-"| end : Mappings
+"| Terminal
 "|=============================================================================
 
-"|=============================================================================
-"| Terminal <<<
-"|=============================================================================
-
+" Note: Usefull if you use a non-Posix complient shell like fish.
 set shell=/bin/bash
-set t_Co=256         " because all terms should support 256 colors nowadays…
-set notitle         " don’t set the title to “Thanks for flying vim” on exit
-set guipty         " better (?) terminal emulation in GUI mode
+" Because all terms should support 256 colors nowadays…
+set t_Co=256
+" Don’t set the title to “Thanks for flying vim” on exit
+set notitle
+" Better (?) terminal emulation in GUI mode
+set guipty
+
+" Note: Configuration for interfacing with Ranger curses file explorer
+"if exists("Ranger")
+"	noremap <silent> <Esc>e :call Ranger()<CR>
+"endif
 
 "|=============================================================================
-"| end : Terminal
+"| User Interface
 "|=============================================================================
 
-"|=============================================================================
-"| User Interface <<<
-"|=============================================================================
-"
 " Always use autoindent.
 set autoindent
 " Display current mode blow the status line.
@@ -103,29 +108,25 @@ set laststatus=4
 set ruler
 " Highlight current line.
 set cursorline
-" Consistency with most tiling WMs (wmii, i3…).
+" Consistency with most tiling Windows Managers (wmii, i3…).
 set splitbelow
 " Easier rectangular selections.
 set virtualedit=block
-"
+
 " Show absolute line numbers (:set nu).
 set number
 " show relative line numbers (:set rnu).
-"set relativenumber
+" set relativenumber
 
 " Number of screen lines to show around the cursor.
 set scrolloff=5
 " Minimal number width (not working?).
 set numberwidth=6
 
-" Minimal interface when running in GUI mode.
-" set guioptions=
-" set guifont=Inconsolata\ 11
-
 syntax on
 colorscheme distinguished
 
-" 80-character lines (= Mozilla guidelines).
+" 80-character lines.
 " Line length above which to break a line.
 set textwidth=80
 " Highlight the textwidth limit.
@@ -135,74 +136,87 @@ set wrap
 set linebreak
 set showbreak=>\ \ \
 
-autocmd FileType Makefile set noexpandtab
+" Folding settings:
 " set foldmethod=indent"
 
-" map Q gq "Didn't use the Ex mod use Q for format , p in mode Visuel
+" Didn't use the Ex mod use Q for format , p in mode Visuel
+" map Q gq
 " Remplace the text in the register.
 
 " List unprintables characters.
 set listchars=tab:▸.,eol:¬,trail:·,nbsp:·
 
+" Decomment: If using a Graphical user interface.
 " if &t_Co > 2 || has("gui_running")
 "  syntax on
 "  set hlsearch
 " endif
 
-" set foldmethod=indent
+" set guioptions= " Need to be completed
+" set guifont= " Need to be completed
+
+" Note: Makefile needs tabs…
+autocmd FileType Makefile set noexpandtab
+
+" Missing: Documentation.
 autocmd FileType html,xhtml,javascript,css,c,cpp,python setlocal
-"
-"|=============================================================================
-"| >>> User Interface
-"|=============================================================================
-
 
 "|=============================================================================
-"| General settings <<<
+"| General settings
 "|=============================================================================
 
+" Because putting fancy characters like λ is awesome.
 set encoding=utf-8
-" Highligh blank characters.
-"set lcs=tab:\›\ ,trail:~,nbsp:¤,extends:>,precedes:<
-" this should be the default but some distros disable modelines by default…
+
+" Note: This should be the default but some distros disable modelines by default…
 set modeline
 set modelines=5
 
 " Use the current file’s directory as Vim’s working directory.
-" set autochdir         " XXX not working on MacOSX
+" Note: Not working on MacOSX.
+set autochdir
 
 " When inserting a bracket, briefly jump to its match.
 set showmatch
+
 " Trigger the FileType event when set (local to buffer)
 " set filetype=vim
 
+" Missing: Documentation.
 set showcmd
 
-" set syntax on
 set tabstop=4
 set expandtab
 set shiftwidth=4
 set softtabstop=4
 set smartindent
 set cindent
-
-set viminfo='20,\"50 " w and r in .viminfo. But dont save more than 50lines.
-set history=50 " Save 50 file of command line history.
-" 80-character lines (= Mozilla guidelines).
+"
+" w and r in .viminfo. But dont save more than 50lines.
+set viminfo='20,\"50
+" Save 50 file of command line history.
+set history=50
 
 " Search settings.
-set hlsearch         " Highlight search results.
-set incsearch         " Incremental search: find as you type.
-set ignorecase         " Search is case-insensitive.
-set smartcase         " Except if the search pattern contains uppercase chars.
+" Highlight search results.
+set hlsearch
+" Incremental search: find as you type.
+set incsearch
+" Search is case-insensitive.
+set ignorecase
+" Except if the search pattern contains uppercase chars.
+set smartcase
 
 " Case-insensitive tab completion.
-set wildmenu " enhanced command-line completion in the status line
-set wildmode=longest:full " (use `list:longest` to complete files like a
+" Enhanced command-line completion in the status line
+set wildmenu
+" use `list:longest` to complete files like a (missing part?).
+set wildmode=longest:full
 if exists("&wildignorecase")
-	set wildignorecase
+    set wildignorecase
 endif
 
+" Missing: Documentation.
 set showfulltag
 
 " Disable incrementation of octal numbers.
@@ -214,14 +228,15 @@ function! <SID>StripTrailingWhitespaces()
     let _s=@/
     let l = line(".")
     let c = col(".")
-    " Do the business:
+    " Replace all traillings spaces by nothing.
     %s/\s\+$//e
     " Clean: restore previous search history, and cursor position.
     let @/=_s
     call cursor(l, c)
-endfunction
+endfunction " StripTrailingWhitespaces
+"
+" Call on save.
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
-
-"| for vim-airline
+" Note: Neccessary for vim-airline
 set laststatus=2
