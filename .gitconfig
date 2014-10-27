@@ -3,6 +3,7 @@
 # Src : mdk.fr/dotfiles/gitconfig
 
 # Need to be completed.
+
 [user]
 	name =
 	email =
@@ -32,22 +33,24 @@
     untracked = cyan
 
 [alias]
-        st = status
-        ci = commit -a
-        br = branch
-        co = checkout
-        df = diff
-		cl = clone
-        lg = log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-        w = whatchanged
-        pom = push origin master
+    st = status
+    ci = commit -a
+    br = branch
+    co = checkout
+    df = diff
+    cl = clone
+        # Print a pretty nice network graph of the projet.
+    lg = log --date-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    w = whatchanged
+    pom = push origin master
         # show list of contributors in descending order by number of commits
-        rank = shortlog -sn --no-merges
+    rank = shortlog -sn --no-merges
 
 [push]
-	default = tracking
+    default = tracking
 
 [apply]
     whitespace = strip
+
 [core]
-	excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore_global
