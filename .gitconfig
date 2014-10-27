@@ -1,10 +1,11 @@
 # Author : Axel Viala
 # Forked from : Julien Palard's gitconfig
 # Src : mdk.fr/dotfiles/gitconfig
-#
+
+# Need to be completed.
 [user]
-	name = Axel Viala
-	email = axel.viala@darnuria.eu
+	name =
+	email =
 
 [color]
     diff = auto
