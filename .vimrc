@@ -240,3 +240,6 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " Note: Neccessary for vim-airline
 set laststatus=2
+
+" Resolving: Vim: Warning: Input is not from a terminal
+au StdinReadPost * set buftype=nofile

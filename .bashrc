@@ -120,7 +120,7 @@ PS1_trail=""
     && TITLE="\[\033]0;\u@\H:\w\a\]" \
     || TITLE=''
 
-export PS1="$TITLE\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]$PS1_trail"'\$ '
+export PS1="$TITLE\[$USERNAME_COLOR\]\u\[$WHITE\]@\[$HOSTNAME_COLOR\]\H\[$WHITE\]$PS1_trail"'λ '
 
 alias grep="grep --color"
 alias ls='ls $LS_OPTIONS'
