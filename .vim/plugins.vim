@@ -42,11 +42,14 @@ let g:syntastic_style_error_symbol = '@'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_warning_symbol = '#'
 let g:syntastic_c_include_dirs = [ '.', '..', './includes', '../libopt/inc', '../*/includes', 'SDL2/include/SDL2' ]
+
+NeoBundle 'scrooloose/syntastic.git'
+"
 " Reload
 map <silent> tu :call GHC_BrowseAll()<CR>
+
 " Type Lookup
 map <silent> tw :call GHC_ShowType(1)<CR>
-NeoBundle 'scrooloose/syntastic.git'
 
 "|
 "| QuickFixSign
@@ -97,6 +100,7 @@ au VimEnter * RainbowParenthesesToggleAll
 " au Syntax * RainbowParenthesesLoadRound
 " au Syntax * RainbowParenthesesLoadSquare
 " au Syntax * RainbowParenthesesLoadBraces
+
 NeoBundle 'kien/rainbow_parentheses.vim'
 
 "|
@@ -114,25 +118,60 @@ NeoBundle 'kien/rainbow_parentheses.vim'
 "|
 
 NeoBundle 'wting/rust.vim'
+
+"|
+"| Solarized:
+"|
+
+NeoBundle 'https://github.com/altercation/vim-colors-solarized'
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
+
+"|
+"| Distinguished
+"|
+
+NeoBundle 'https://github.com/Lokaltog/vim-distinguished'
+let g:distinguished_termcolors=256
+
+"|
+"| Vim fugitive.
+"|
+
+NeoBundle 'https://github.com/tpope/vim-fugitive'
+
+"|
+"| Ctrl-P
+"|
+
+NeoBundle 'http://github.com/kien/ctrlp.vim'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|swp|pyc|wav|mp3|o|ogg)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_dotfiles = 0
+let g:ctrlp_switch_buffer = 0
+
+"|
+"| AirLine
+"|
+
+NeoBundle 'https://github.com/bling/vim-airline'
+let g:airline_powerline_fonts = 0
+let g:airline#extensions#tabline#enabled = 1
+
 "|
 "| haskell:
 "| vim2hs: dag/vim2hs
 "|
 
 NeoBundle 'https://github.com/dag/vim2hs'
-
-"|
-"|
-"|
-NeoBundle 'https://github.com/tpope/vim-fugitive'
-
-"|
-"| AirLine
-"|
-NeoBundle 'https://github.com/bling/vim-airline'
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#tabline#enabled = 1
-
 
 call neobundle#end()
 

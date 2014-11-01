@@ -42,20 +42,6 @@ set clipboard=unnamed,unnamedplus
 autocmd WinEnter * checktime
 
 "|=============================================================================
-"| Plugins
-"|=============================================================================
-
-" Required for plugins
-filetype off
-
-if filereadable($VIMHOME.'/plugins.vim')
-    source $VIMHOME/plugins.vim
-endif
-
-" Required for plugins
-filetype plugin indent on
-
-"|=============================================================================
 "| Mappings
 "|=============================================================================
 
@@ -123,9 +109,6 @@ set scrolloff=5
 " Minimal number width (not working?).
 set numberwidth=6
 
-syntax on
-colorscheme distinguished
-
 " 80-character lines.
 " Line length above which to break a line.
 set textwidth=80
@@ -147,10 +130,15 @@ set showbreak=>\ \ \
 set listchars=tab:▸.,eol:¬,trail:·,nbsp:·
 
 " Decomment: If using a Graphical user interface.
-" if &t_Co > 2 || has("gui_running")
-"  syntax on
-"  set hlsearch
-" endif
+if &t_Co > 2 || has("gui_running")
+    " Menu bar
+    set guioptions-=m
+    " Toolbar
+    set guioptions-=T
+    " Scrollbar
+    set guioptions-=r
+    set hlsearch
+endif
 
 " set guioptions= " Need to be completed
 " set guifont= " Need to be completed
@@ -243,3 +231,24 @@ set laststatus=2
 
 " Resolving: Vim: Warning: Input is not from a terminal
 au StdinReadPost * set buftype=nofile
+
+"|=============================================================================
+"| Plugins
+"|=============================================================================
+
+syntax enable
+set background=dark
+" Required for plugins
+filetype off
+
+if filereadable($VIMHOME.'/plugins.vim')
+    source $VIMHOME/plugins.vim
+endif
+
+colorscheme distinguished
+
+" Required for plugins
+filetype plugin indent on
+
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
