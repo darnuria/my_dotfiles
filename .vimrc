@@ -120,7 +120,7 @@ set linebreak
 set showbreak=>\ \ \
 
 " Folding settings:
-" set foldmethod=indent"
+set foldmethod=indent
 
 " Didn't use the Ex mod use Q for format , p in mode Visuel
 " map Q gq
@@ -130,7 +130,7 @@ set showbreak=>\ \ \
 set listchars=tab:▸.,eol:¬,trail:·,nbsp:·
 
 " Decomment: If using a Graphical user interface.
-if &t_Co > 2 || has("gui_running")
+if &t_Co > 2 && has("gui_running")
     " Menu bar
     set guioptions-=m
     " Toolbar
@@ -139,9 +139,6 @@ if &t_Co > 2 || has("gui_running")
     set guioptions-=r
     set hlsearch
 endif
-
-" set guioptions= " Need to be completed
-" set guifont= " Need to be completed
 
 " Note: Makefile needs tabs…
 autocmd FileType Makefile set noexpandtab
@@ -212,15 +209,17 @@ set nrformats=hex
 
 " Strip trailing whitespace.
 function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position..
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Replace all traillings spaces by nothing.
+    " Preparation: save last search, and cursor position.
+    let last_search=@/
+    " Saving: current line.
+    let current_line = line(".")
+    " Saving: current column.
+    let current_column = col(".")
+    " Replace: all traillings spaces by nothing.
     %s/\s\+$//e
     " Clean: restore previous search history, and cursor position.
-    let @/=_s
-    call cursor(l, c)
+    let @/=last_search
+    call cursor(current_line, current_column)
 endfunction " StripTrailingWhitespaces
 "
 " Call on save.
@@ -236,19 +235,17 @@ au StdinReadPost * set buftype=nofile
 "| Plugins
 "|=============================================================================
 
+" Enabling syntax highlighting.
 syntax enable
+" Setting vim background to black manually.
 set background=dark
-" Required for plugins
-filetype off
 
+" Looking for plugin file script.
 if filereadable($VIMHOME.'/plugins.vim')
     source $VIMHOME/plugins.vim
 endif
 
+" Colorscheme downloaded through Neobundle.
 colorscheme distinguished
-
-" Required for plugins
-filetype plugin indent on
-
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip

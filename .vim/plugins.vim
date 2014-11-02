@@ -4,6 +4,9 @@
 "| Licence 	: UNLICENCE
 "|
 
+" Required for plugins
+filetype off
+
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
@@ -44,12 +47,12 @@ let g:syntastic_style_warning_symbol = '#'
 let g:syntastic_c_include_dirs = [ '.', '..', './includes', '../libopt/inc', '../*/includes', 'SDL2/include/SDL2' ]
 
 NeoBundle 'scrooloose/syntastic.git'
-"
-" Reload
-map <silent> tu :call GHC_BrowseAll()<CR>
 
-" Type Lookup
-map <silent> tw :call GHC_ShowType(1)<CR>
+"|
+"| ghcmod-vim
+"|
+
+NeoBundle 'https://github.com/eagletmt/ghcmod-vim'
 
 "|
 "| QuickFixSign
@@ -174,6 +177,9 @@ let g:airline#extensions#tabline#enabled = 1
 NeoBundle 'https://github.com/dag/vim2hs'
 
 call neobundle#end()
+
+" Required for plugins
+filetype plugin indent on
 
 " Installation Check
 NeoBundleCheck
