@@ -131,6 +131,8 @@ alias ....=".. 3"
 alias .....=".. 4"
 alias lintian='lintian --pedantic -v -iI --display-experimental --show-overrides'
 alias fingerprint='find /etc/ssh -name "*.pub" -exec ssh-keygen -l -f {} \;'
+alias ocamlc='ocamlc -w A -safe-string'
+alias ocaml='ocaml -w A -safe-string'
 
 if [ -f /etc/bash_completion ]; then
     source /etc/bash_completion
@@ -199,3 +201,6 @@ ssh-agent-restore() {
 }
 
 #fish
+
+# OPAM configuration
+. /home/darnuria/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true

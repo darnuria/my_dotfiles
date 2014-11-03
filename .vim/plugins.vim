@@ -130,6 +130,9 @@ NeoBundle 'https://github.com/altercation/vim-colors-solarized'
 let g:solarized_termcolors=256
 let g:solarized_contrast="high"
 
+"| Ocaml by leo
+"NeoBundle 'https://gist.github.com/LeoTestard/a96dcb4bc77e8a6e5a3d'
+
 "|
 "| Distinguished
 "|
