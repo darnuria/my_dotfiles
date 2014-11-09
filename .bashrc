@@ -181,11 +181,10 @@ urlencode() {
 # Removes *~ and #*# files in curent folder,
 # for a depth limited to 3 folders.
 clean() {
-    find . -name .emacs_backups -prune \
-        -o \( -type f -a \
-        \( -name '*~' -o -name '#*#' -o -name '\.DS_*' \) \
-        \) \
-        -delete
+    find . -name .emacs_backups -o \( -type f -a \
+        \( -name '*~' -o -name '#*#' -o -name '\.DS_*' -o \
+        -name '*.swp' -o -name '*.swo' \) \
+        \) -delete
 }
 
 # Try to restore environment variable of an ssh-agent
