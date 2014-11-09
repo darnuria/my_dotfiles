@@ -11,9 +11,6 @@ filetype off
 if !1 | finish | endif
 
 if has('vim_starting')
-    " Be iMproved
-    set nocompatible
-
     " Required:
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
@@ -22,16 +19,6 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
-
-"|
-"| nerdcommenter
-"|
-
-"let g:NERDSpaceDelims = 1
-" let g:NERDCustomDelimiters = {
-" \ 'javascript': { 'left': '//~ ', 'leftAlt': '/**', 'rightAlt': '*/'}
-" \ }
-" NeoBundle 'scrooloose/nerdcommenter'
 
 "|
 "| Syntastics
@@ -107,16 +94,6 @@ au VimEnter * RainbowParenthesesToggleAll
 NeoBundle 'kien/rainbow_parentheses.vim'
 
 "|
-"| terryma/vim-multiple-cursors
-"|
-
-"NeoBundle 'terryma/vim-multiple-cursors'
-" Brief help
-" :NeoBundleList          - list configured bundles
-" :NeoBundleInstall(!)    - install(update) bundles
-" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-
-"|
 "| wting/rust.vim
 "|
 
@@ -126,9 +103,9 @@ NeoBundle 'wting/rust.vim'
 "| Solarized:
 "|
 
-NeoBundle 'https://github.com/altercation/vim-colors-solarized'
-let g:solarized_termcolors=256
-let g:solarized_contrast="high"
+" NeoBundle 'https://github.com/altercation/vim-colors-solarized'
+" let g:solarized_termcolors=256
+" let g:solarized_contrast="high"
 
 "|
 "| Distinguished
