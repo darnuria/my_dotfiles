@@ -26,6 +26,9 @@ if !empty($VIMTEMP)
     set undofile
 endif
 
+" Because putting fancy characters like λ is awesome.
+set encoding=utf-8
+
 " Modern behaviour:
 " Required for some top level options.
 set nocompatible
@@ -127,16 +130,13 @@ set foldmethod=indent
 " Remplace the text in the register.
 
 " List unprintables characters.
-set listchars=tab:▸.,eol:¬,trail:·,nbsp:·
+
+set listchars=nbsp:¤,tab:··,trail:¤,extends:>,precedes:<
+set list
 
 " Decomment: If using a Graphical user interface.
 if &t_Co > 2 && has("gui_running")
-    " Menu bar
-    set guioptions-=m
-    " Toolbar
-    set guioptions-=T
-    " Scrollbar
-    set guioptions-=r
+    set guioptions=
     set hlsearch
 endif
 
@@ -150,8 +150,6 @@ autocmd FileType html,xhtml,javascript,css,c,cpp,python setlocal
 "| General settings
 "|=============================================================================
 
-" Because putting fancy characters like λ is awesome.
-set encoding=utf-8
 
 " Note: This should be the default but some distros disable modelines by default…
 set modeline

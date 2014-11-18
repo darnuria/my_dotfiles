@@ -1,7 +1,7 @@
 "|
-"| File 	: ~/.vim/plugins.vim
-"| Source 	: https://github.com/darnuria/my_dotFiles
-"| Licence 	: UNLICENCE
+"| File: ~/.vim/plugins.vim
+"| Source: https://github.com/darnuria/my_dotFiles
+"| Licence: UNLICENCE
 "|
 
 " Required for plugins
