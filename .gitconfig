@@ -55,3 +55,11 @@
 
 [core]
     excludesfile = ~/.gitignore_global
+
+# Think about meld tool.
+# [merge]
+      # tool = # complete me.
+
+# [mergetool "extMerge"]
+# cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+# trustExitCode = false

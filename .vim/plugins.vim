@@ -32,6 +32,7 @@ let g:syntastic_style_error_symbol = '@'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_warning_symbol = '#'
 let g:syntastic_c_include_dirs = [ '.', '..', './includes', '../libopt/inc', '../*/includes', 'SDL2/include/SDL2' ]
+let g:syntastic_ocaml_checkers = ['merlin']
 
 NeoBundle 'scrooloose/syntastic.git'
 
@@ -155,6 +156,15 @@ let g:airline#extensions#tabline#enabled = 1
 "|
 
 NeoBundle 'https://github.com/dag/vim2hs'
+
+"| Coq: Coquille
+NeoBundle 'https://github.com/the-lambda-church/coquille'
+
+
+"| Merlin ocaml support.
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
 
 call neobundle#end()
 

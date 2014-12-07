@@ -150,9 +150,8 @@ fi
 }
 
 upgrade() {
-    sudo apt-get update \
-        && sudo apt-get dist-upgrade \
-        && sudo apt-get --purge autoremove
+    sudo apt update &&
+    sudo apt full-upgrade
 }
 
 # Json pretty printer
