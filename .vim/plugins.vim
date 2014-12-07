@@ -20,9 +20,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-"|
 "| Syntastics
-"|
 
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
@@ -36,24 +34,14 @@ let g:syntastic_ocaml_checkers = ['merlin']
 
 NeoBundle 'scrooloose/syntastic.git'
 
-"|
-"| ghcmod-vim
-"|
-
-NeoBundle 'https://github.com/eagletmt/ghcmod-vim'
-
-"|
 "| QuickFixSign
-"|
 
 " Show markers, quickfix and VCS status.
 set lazyredraw
 let g:quickfixsigns_events = ['BufEnter', 'CursorHold', 'CursorMoved', 'InsertLeave', 'InsertChange']
 NeoBundle 'tomtom/quickfixsigns_vim'
 
-"|
 "| NERDTree
-"|
 
 " autocmd vimenter * NERDTree
 " autocmd vimenter * if !argc() | NERDTree | endif
@@ -70,22 +58,16 @@ NeoBundle 'tomtom/quickfixsigns_vim'
 " let NERDTreeIgnore = ['\.o$', '\.a$']
 " NeoBundle 'scrooloose/nerdtree.git'
 
-"|
 "| vimproc
-"|
 
 NeoBundle 'Shougo/vimproc.vim', {'build':{'linux' : 'make'}}
 
-"|
 "| Gundo
-"|
 
 nnoremap <F5> :GundoToggle<CR>
 NeoBundle 'Gundo'
 
-"|
 "| Rainbow Parentheses.
-"|
 
 au VimEnter * RainbowParenthesesToggleAll
 " au Syntax * RainbowParenthesesLoadRound
@@ -94,39 +76,26 @@ au VimEnter * RainbowParenthesesToggleAll
 
 NeoBundle 'kien/rainbow_parentheses.vim'
 
-"|
-"| wting/rust.vim
-"|
 
-NeoBundle 'wting/rust.vim'
+"| Solarized
 
-"|
-"| Solarized:
-"|
+NeoBundle 'https://github.com/altercation/vim-colors-solarized'
+let g:solarized_termcolors=256
+"let g:solarized_contrast="high"
 
-" NeoBundle 'https://github.com/altercation/vim-colors-solarized'
-" let g:solarized_termcolors=256
-" let g:solarized_contrast="high"
-
-"| Ocaml by leo
+"| Ocaml colorscheme by leo
 "NeoBundle 'https://gist.github.com/LeoTestard/a96dcb4bc77e8a6e5a3d'
 
-"|
 "| Distinguished
-"|
 
 NeoBundle 'https://github.com/Lokaltog/vim-distinguished'
 let g:distinguished_termcolors=256
 
-"|
 "| Vim fugitive.
-"|
 
 NeoBundle 'https://github.com/tpope/vim-fugitive'
 
-"|
 "| Ctrl-P
-"|
 
 NeoBundle 'http://github.com/kien/ctrlp.vim'
 let g:ctrlp_map = '<c-p>'
@@ -142,29 +111,32 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_switch_buffer = 0
 
-"|
 "| AirLine
-"|
 
 NeoBundle 'https://github.com/bling/vim-airline'
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#enabled = 1
 
-"|
-"| haskell:
-"| vim2hs: dag/vim2hs
-"|
+"| Haskell: vim2hs
 
 NeoBundle 'https://github.com/dag/vim2hs'
 
+"| Haskell: ghcmod-vim
+
+NeoBundle 'https://github.com/eagletmt/ghcmod-vim'
+
 "| Coq: Coquille
+
 NeoBundle 'https://github.com/the-lambda-church/coquille'
 
 
-"| Merlin ocaml support.
+"| Ocaml: Merlin
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
+"| Rust: Rustsupport
+
+NeoBundle 'wting/rust.vim'
 
 call neobundle#end()
 
