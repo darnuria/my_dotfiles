@@ -241,6 +241,8 @@ set background=dark
 " Looking for plugin file script.
 if filereadable($VIMHOME.'/plugins.vim')
     source $VIMHOME/plugins.vim
+else
+    echo "Error!"
 endif
 
 " Colorscheme downloaded through Neobundle.
