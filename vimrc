@@ -51,6 +51,12 @@ autocmd WinEnter * checktime
 " Note: Disable digraph input to make <^> work faster.
 set nodigraph
 
+" Unsed arrow for moves in Normal mode.
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+
 " Note: Unset arrow for moves in Visual-* mode.
 vnoremap <Up> <Nop>
 vnoremap <Down> <Nop>
@@ -62,6 +68,12 @@ inoremap <Up> <Nop>
 inoremap <Down> <Nop>
 inoremap <Left> <Nop>
 inoremap <right> <Nop>
+
+" Mapping <Leader> to ,
+let mapleader = ","
+
+" Mapping <localeLeader> to ,
+let maplocalleader = ","
 
 "|=============================================================================
 "| Terminal
@@ -77,9 +89,9 @@ set notitle
 set guipty
 
 " Note: Configuration for interfacing with Ranger curses file explorer
-"if exists("Ranger")
-"	noremap <silent> <Esc>e :call Ranger()<CR>
-"endif
+if exists("Ranger")
+	noremap <silent> <Esc>e :call Ranger()<CR>
+endif
 
 "|=============================================================================
 "| User Interface
@@ -145,6 +157,8 @@ autocmd FileType Makefile set noexpandtab
 
 " Missing: Documentation.
 autocmd FileType html,xhtml,javascript,css,c,cpp,python setlocal
+
+autocmd BufRead,BufNewFile *.ml,*.mli compiler ocaml
 
 "|=============================================================================
 "| General settings

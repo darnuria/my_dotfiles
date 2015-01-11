@@ -1,8 +1,6 @@
-"|
 "| File: ~/.vim/plugins.vim
 "| Source: https://github.com/darnuria/my_dotFiles
 "| Licence: UNLICENCE
-"|
 
 " Required for plugins
 filetype off
@@ -58,9 +56,18 @@ NeoBundle 'tomtom/quickfixsigns_vim'
 " let NERDTreeIgnore = ['\.o$', '\.a$']
 " NeoBundle 'scrooloose/nerdtree.git'
 
-"| vimproc
+"| Vimproc
 
 NeoBundle 'Shougo/vimproc.vim', {'build':{'linux' : 'make'}}
+
+"| Unite
+NeoBundle "https://github.com/Shougo/unite.vim"
+
+" Let's provide fonctionnality like ctrl-p.
+nnoremap <C-p> :Unite file_rec/async<cr>
+
+" Let's use ag with vim.
+nnoremap <space>/ :Unite ag:.<cr>
 
 "| Gundo
 
@@ -69,22 +76,17 @@ NeoBundle 'Gundo'
 
 "| Rainbow Parentheses.
 
-au VimEnter * RainbowParenthesesToggleAll
+NeoBundle 'kien/rainbow_parentheses.vim'
+" au VimEnter * RainbowParenthesesToggleAll
 " au Syntax * RainbowParenthesesLoadRound
 " au Syntax * RainbowParenthesesLoadSquare
 " au Syntax * RainbowParenthesesLoadBraces
 
-NeoBundle 'kien/rainbow_parentheses.vim'
-
-
 "| Solarized
 
-NeoBundle 'https://github.com/altercation/vim-colors-solarized'
-let g:solarized_termcolors=256
-"let g:solarized_contrast="high"
-
-"| Ocaml colorscheme by leo
-"NeoBundle 'https://gist.github.com/LeoTestard/a96dcb4bc77e8a6e5a3d'
+" NeoBundle 'https://github.com/altercation/vim-colors-solarized'
+" let g:solarized_termcolors=256
+" let g:solarized_contrast="high"
 
 "| Distinguished
 
@@ -97,19 +99,19 @@ NeoBundle 'https://github.com/tpope/vim-fugitive'
 
 "| Ctrl-P
 
-NeoBundle 'http://github.com/kien/ctrlp.vim'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll|swp|pyc|wav|mp3|o|ogg)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_dotfiles = 0
-let g:ctrlp_switch_buffer = 0
+"NeoBundle 'http://github.com/kien/ctrlp.vim'
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_match_window_bottom = 0
+" let g:ctrlp_match_window_reversed = 0
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+"   \ 'file': '\v\.(exe|so|dll|swp|pyc|wav|mp3|o|ogg)$',
+"   \ 'link': 'some_bad_symbolic_links',
+"   \ }
+" let g:ctrlp_working_path_mode = 'ra'
+" let g:ctrlp_dotfiles = 0
+" let g:ctrlp_switch_buffer = 0
 
 "| AirLine
 
@@ -129,10 +131,15 @@ NeoBundle 'https://github.com/eagletmt/ghcmod-vim'
 
 NeoBundle 'https://github.com/the-lambda-church/coquille'
 
+"| Ocaml colorscheme by leo
+" NeoBundle 'https://gist.github.com/LeoTestard/a96dcb4bc77e8a6e5a3d'
 
-"| Ocaml: Merlin
+"| Ocaml: Merlin need to be install through opam
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+"| ocp-indent
+NeoBundle "https://github.com/def-lkb/ocp-indent-vim"
 
 "| Rust: Rustsupport
 
