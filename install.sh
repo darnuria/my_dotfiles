@@ -16,8 +16,6 @@ function make_symlinks() {
     ln -sf $install_dir/bash_logout.sh   .bash_logout
 
     #ln -sf $install_dir/tmux.conf .tmux.conf
-    #ln -sf $install_dir/tmux.conf .tmux.conf
-
 }
 
 function main() {
