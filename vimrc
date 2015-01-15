@@ -51,6 +51,13 @@ autocmd WinEnter * checktime
 " Note: Disable digraph input to make <^> work faster.
 set nodigraph
 
+" Need to understand...
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" :
+              \  (len(&completefunc) ? "\<C-x><C-u>" :
+              \      (len(&omnifunc) ? "\<C-x><C-o>" :
+              \                        "\<C-n>"))
+
 " Unsed arrow for moves in Normal mode.
 nnoremap <Up> <Nop>
 nnoremap <Down> <Nop>
