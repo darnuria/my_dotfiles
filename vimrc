@@ -165,7 +165,10 @@ autocmd FileType Makefile set noexpandtab
 " Missing: Documentation.
 autocmd FileType html,xhtml,javascript,css,c,cpp,python setlocal
 
+" Set Ocaml as compiler for *.ml, *.mli files.
 autocmd BufRead,BufNewFile *.ml,*.mli compiler ocaml
+" Add support for Markdown files.
+autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 "|=============================================================================
 "| General settings
