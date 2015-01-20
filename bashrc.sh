@@ -201,4 +201,4 @@ ssh-agent-restore() {
 #fish
 
 # OPAM configuration
-. /home/darnuria/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+source $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
