@@ -13,13 +13,22 @@ Inspired by
 
 fabi1cazenave [dotfiles](https://github.com/fabi1cazenave/dotFiles).
 
+Installation
+============
+
+```sh
+git clone --recursive https://github.com/darnuria/my_dotfiles
+cd my_dotfiles
+bash install.sh
+```
+
 OCaml
 =====
 
 ```sh
-add-apt-repository ppa:avsm/ppa
-apt-get update
-apt-get install ocaml ocaml-native-compilers camlp4-extra opam
+sudo add-apt-repository ppa:avsm/ppa
+sudo apt-get update
+sudo apt-get install ocaml ocaml-native-compilers camlp4-extra opam
 
 sudo apt-get install m4
 opam install utop merlin ocp-indent
