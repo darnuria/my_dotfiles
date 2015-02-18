@@ -29,9 +29,10 @@ export LESS_TERMCAP_ue=$'\E[0m'        # fin
 export EDITOR=vim
 export PYTHONIOENCODING=utf_8
 export HISTCONTROL=ignoreboth
-export HISTIGNORE='cd:pwd:pushd:popd:ls:bg:fg:history'
+export HISTIGNORE='cd:pwd:pushd:popd:ls*:l:bg*:fg*:bash:sh:vim:vi:htop:top:tree:history'
 export HISTFILESIZE=50000
 export HISTSIZE=50000
+export PROMPT_COMMAND='history -a'
 
 if [ "$OSTYPE" == "linux-gnu" ] ; then
     export LS_OPTIONS='--color=auto'
@@ -58,8 +59,7 @@ fi
 # I don't like the default blue (That is too dark for me)
 tput initc 12 400 400 1000
 
-str_sum()
-{
+str_sum() {
     BC=$(which bc)
     if [ -z "$1" ] ; then
         echo "Usage str_sum STRING"

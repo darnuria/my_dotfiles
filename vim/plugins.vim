@@ -39,6 +39,11 @@ set lazyredraw
 let g:quickfixsigns_events = ['BufEnter', 'CursorHold', 'CursorMoved', 'InsertLeave', 'InsertChange']
 NeoBundle 'tomtom/quickfixsigns_vim'
 
+"| Clang complete.
+NeoBundle "https://github.com/Rip-Rip/clang_complete", { 'build': {'linux': 'make'}}
+let g:clang_library_path='/usr/lib/llvm-3.5/lib/libclang.so.1'
+" autocmd FileType c,cpp NeoBundleSource clang_complete
+
 "| NERDTree
 
 " autocmd vimenter * NERDTree
@@ -127,9 +132,13 @@ NeoBundle 'https://github.com/dag/vim2hs'
 
 NeoBundle 'https://github.com/eagletmt/ghcmod-vim'
 
+" autocmd FileType haskell NeoBundleSource vim2hs ghcmod-vim
+
 "| Coq: Coquille
 
 NeoBundle 'https://github.com/the-lambda-church/coquille'
+
+" autocmd FileType coq NeoBundleSource coquille'
 
 "| Ocaml colorscheme by leo
 " NeoBundle 'https://gist.github.com/LeoTestard/a96dcb4bc77e8a6e5a3d'
@@ -140,10 +149,15 @@ execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 "| ocp-indent
 NeoBundle "https://github.com/def-lkb/ocp-indent-vim"
+" autocmd FileType ocaml NeoBundleSource 'ocp-indent-vim'
 
 "| Rust: Rustsupport
 
 NeoBundle 'wting/rust.vim'
+" autocmd FileType rust NeoBundleSource 'rust.vim'
+
+" Do not work :(
+" NeoBundle 'https://github.com/fsharp/fsharpbinding/'
 
 call neobundle#end()
 
