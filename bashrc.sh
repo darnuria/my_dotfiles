@@ -26,6 +26,9 @@ export LESS_TERMCAP_so=$'\E[01;44;33m' # début de la ligne d'état
 export LESS_TERMCAP_se=$'\E[0m'        # fin
 export LESS_TERMCAP_us=$'\E[01;32m'    # début de souligné
 export LESS_TERMCAP_ue=$'\E[0m'        # fin
+export TERM=xterm-256color        # for common 256 color terminals (e.g. gnome-terminal)
+export TERM=screen-256color       # for a tmux -2 session (also for screen)
+export TERM=rxvt-unicode-256color # for a colorful rxvt unicode session
 export EDITOR=vim
 export PYTHONIOENCODING=utf_8
 export HISTCONTROL=ignoreboth
@@ -37,7 +40,7 @@ export PROMPT_COMMAND='history -a'
 if [ "$OSTYPE" == "linux-gnu" ] ; then
     export LS_OPTIONS='--color=auto'
     umask 022
-    eval "`dircolors`"
+    eval `dircolors $HOME/.dircolors.256dark`
     set -C
 elif [ "$OSTYPE" == "darwin12" ] ; then
     export CLICOLOR=1
@@ -70,7 +73,8 @@ str_sum() {
             | hexdump -b \
             | head -n 1 \
             | tr ' ' '+' \
-            | sed 's/\+*$//g' | bc
+            | sed 's/\+*$//g' \
+            | bc
     else
         echo 0
     fi
@@ -151,7 +155,7 @@ fi
 
 upgrade() {
     sudo apt update &&
-    sudo apt full-upgrade
+        sudo apt full-upgrade
 }
 
 # Json pretty printer

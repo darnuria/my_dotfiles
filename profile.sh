@@ -61,3 +61,8 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# TODO
+# Source ~/.bashrc if bash is default terminal
+if [ -f "$HOME/.bashrc" ] ; then
+    source $HOME/.bashrc
+fi

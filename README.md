@@ -16,6 +16,9 @@ fabi1cazenave [dotfiles](https://github.com/fabi1cazenave/dotFiles).
 Installation
 ============
 
+Use solarized dircolors from:
+https://github.com/seebi/dircolors-solarized/blob/master/dircolors.256dark
+
 ```sh
 git clone --recursive https://github.com/darnuria/my_dotfiles
 cd my_dotfiles
@@ -37,3 +40,5 @@ opam install utop merlin ocp-indent
 Haskell
 =======
 
+
+## Todo
