@@ -194,8 +194,8 @@ set showcmd
 
 set tabstop=4
 set expandtab
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set smartindent
 set cindent
 "
@@ -270,6 +270,8 @@ else
 endif
 
 " Colorscheme downloaded through Neobundle.
-colorscheme distinguished
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256      " use solarized 256 fallback
+colorscheme solarized
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip

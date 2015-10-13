@@ -28,7 +28,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'    # début de souligné
 export LESS_TERMCAP_ue=$'\E[0m'        # fin
 export TERM=xterm-256color        # for common 256 color terminals (e.g. gnome-terminal)
 export TERM=screen-256color       # for a tmux -2 session (also for screen)
-export TERM=rxvt-unicode-256color # for a colorful rxvt unicode session
+# export TERM=rxvt-unicode-256color # for a colorful rxvt unicode session
 export EDITOR=vim
 export PYTHONIOENCODING=utf_8
 export HISTCONTROL=ignoreboth
@@ -47,16 +47,16 @@ elif [ "$OSTYPE" == "darwin12" ] ; then
     export LSCOLORS=gxfxcxdxbxegedabagacad
 fi
 
-if [ -d "$HOME/.local/bin" ] ; then
+if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 else
-    echo "Aie!"
+    echo "Didn't found: $HOME/.local/bin"
 fi
 
 if [ -d "$HOME/.local/lib" ] ; then
     export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 else
-    echo "Directory not found!"
+    echo "Directory: $home/.local/lib not found."
 fi
 
 # I don't like the default blue (That is too dark for me)

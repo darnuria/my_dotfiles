@@ -40,9 +40,9 @@ let g:quickfixsigns_events = ['BufEnter', 'CursorHold', 'CursorMoved', 'InsertLe
 NeoBundle 'tomtom/quickfixsigns_vim'
 
 "| Clang complete.
-NeoBundle "https://github.com/Rip-Rip/clang_complete", { 'build': {'linux': 'make'}}
+NeoBundleLazy "https://github.com/Rip-Rip/clang_complete", { 'build': {'linux': 'make'}}
 let g:clang_library_path='/usr/lib/llvm-3.5/lib/libclang.so.1'
-" autocmd FileType c,cpp NeoBundleSource clang_complete
+autocmd FileType c,cpp NeoBundleSource clang_complete
 
 "| NERDTree
 
@@ -89,8 +89,8 @@ NeoBundle 'kien/rainbow_parentheses.vim'
 
 "| Solarized
 
-" NeoBundle 'https://github.com/altercation/vim-colors-solarized'
-" let g:solarized_termcolors=256
+NeoBundle 'https://github.com/altercation/vim-colors-solarized'
+let g:solarized_termcolors=256
 " let g:solarized_contrast="high"
 
 "| Distinguished
@@ -126,19 +126,19 @@ let g:airline#extensions#tabline#enabled = 1
 
 "| Haskell: vim2hs
 
-NeoBundle 'https://github.com/dag/vim2hs'
+NeoBundleLazy 'https://github.com/dag/vim2hs'
 
 "| Haskell: ghcmod-vim
 
-NeoBundle 'https://github.com/eagletmt/ghcmod-vim'
+NeoBundleLazy 'https://github.com/eagletmt/ghcmod-vim'
 
-" autocmd FileType haskell NeoBundleSource vim2hs ghcmod-vim
+autocmd FileType haskell NeoBundleSource vim2hs ghcmod-vim
 
 "| Coq: Coquille
 
-NeoBundle 'https://github.com/the-lambda-church/coquille'
+NeoBundleLazy 'https://github.com/the-lambda-church/coquille'
 
-" autocmd FileType coq NeoBundleSource coquille'
+autocmd FileType coq NeoBundleSource coquille
 
 "| Ocaml colorscheme by leo
 " NeoBundle 'https://gist.github.com/LeoTestard/a96dcb4bc77e8a6e5a3d'
@@ -148,16 +148,30 @@ let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 "| ocp-indent
-NeoBundle "https://github.com/def-lkb/ocp-indent-vim"
-" autocmd FileType ocaml NeoBundleSource 'ocp-indent-vim'
+NeoBundleLazy "https://github.com/def-lkb/ocp-indent-vim"
+autocmd FileType ocaml NeoBundleSource "ocp-indent-vim"
 
 "| Rust: Rustsupport
 
-NeoBundle 'wting/rust.vim'
-" autocmd FileType rust NeoBundleSource 'rust.vim'
+NeoBundleLazy 'wting/rust.vim'
+
+NeoBundleLazy 'https://github.com/phildawes/racer', {
+            \   'build' : {
+            \     'linux': 'cargo build --release',
+            \   }
+            \ }
+
+set hidden
+let g:racer_cmd="/home/darnuria/my_dotfiles/vim/bundle/racer/target/release/racer"
+let $RUST_SRC_PATH="~/.local/"
+
+autocmd FileType rust NeoBundleSource "rust.vim" "racer"
 
 " Do not work :(
 " NeoBundle 'https://github.com/fsharp/fsharpbinding/'
+
+autocmd Filetype php NeoBundleSource 'better-indent-support-for-php-with-html'
+NeoBundleLazy 'https://github.com/captbaritone/better-indent-support-for-php-with-html'
 
 call neobundle#end()
 
