@@ -51,18 +51,24 @@ if [ -d "$HOME/.cabal/bin" ] ; then
     PATH="$HOME/.cabal/bin:$PATH"
 fi
 
-# Include $HOME/bin into PATH.
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+# Include $HOME/.local/bin into PATH.
+if [ -f "$HOME/local/bin" ] ; then
+    PATH="$HOME/local/bin:$PATH"
 fi
 
-# Include $HOME/.local/bin into PATH.
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+if [ -f "$HOME/.cargo/bin" ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
 fi
+
+# # OPAM configuration
+# if [ -f "$HOME/.opam/opam-init" ] ; then
+#     . /home/darnuria/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+# fi
 
 # TODO
 # Source ~/.bashrc if bash is default terminal
 if [ -f "$HOME/.bashrc" ] ; then
-    source $HOME/.bashrc
+    . $HOME/.bashrc
 fi
+
+export PATH="$HOME/.cargo/bin:$PATH"
