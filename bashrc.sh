@@ -202,6 +202,12 @@ ssh-agent-restore() {
     done
 }
 
+# $1: remote name
+# $2: branch name
+git_checkout_remote() {
+  git checkout -b "$2" "$1"/"$2"
+}
+
 #fish
 
 # OPAM configuration
