@@ -51,10 +51,11 @@
     default = tracking
 
 [apply]
-    whitespace = strip
+   #whitespace = strip
 
 [core]
     excludesfile = ~/.gitignore_global
+	pager = less -x1,5
 
 # cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
 
