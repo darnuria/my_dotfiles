@@ -15,7 +15,7 @@ function make_symlinks() {
   ln -sf $install_dir/gitignore_global .gitignore_global
   ln -sf $install_dir/bash_logout.sh   .bash_logout
   # Ls colors
-  ln -sf $install_dir/.dircolors.256dark .dircolors.256dark
+  ln -sf $install_dir/dircolors.256dark .dircolors.256dark
 
   #ln -sf $install_dir/tmux.conf .tmux.conf
 }
